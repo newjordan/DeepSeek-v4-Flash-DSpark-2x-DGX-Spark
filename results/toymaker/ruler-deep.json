@@ -1,0 +1,111 @@
+{
+  "model": "deepseek-v4-flash-dspark",
+  "base_url": "http://127.0.0.1:18888/v1",
+  "seed": 42,
+  "cases": [
+    {
+      "task": "sniah(key=prairie)",
+      "target": 131072,
+      "actual_tokens": 131080,
+      "ok": true,
+      "prediction": "24592",
+      "gold": [
+        "24592"
+      ],
+      "secs": 80.2
+    },
+    {
+      "task": "mkniah(keys=3,query=river)",
+      "target": 131072,
+      "actual_tokens": 131084,
+      "ok": true,
+      "prediction": "28289",
+      "gold": [
+        "28289"
+      ],
+      "secs": 79.8
+    },
+    {
+      "task": "vartrack(chains=1,hops=4)",
+      "target": 131072,
+      "actual_tokens": 131084,
+      "ok": true,
+      "prediction": "Based on the chain of variable assignments in the text:\n\n1. `VAR CTOPA = 44671`  \n2. `VAR CGPOS = VA",
+      "gold": [
+        "CTOPA",
+        "CGPOS",
+        "SKLHW",
+        "TEKHF",
+        "TCJJI"
+      ],
+      "secs": 83.3
+    },
+    {
+      "task": "cwe(common=5)",
+      "target": 131072,
+      "actual_tokens": 131079,
+      "ok": true,
+      "prediction": "Based on the list provided, the 5 most common words are:\n\n1. **needle** (appears 8 times)\n2. **ancho",
+      "gold": [
+        "quiver",
+        "anchor",
+        "needle",
+        "jungle",
+        "temple"
+      ],
+      "secs": 82.3
+    },
+    {
+      "task": "sniah(key=apple)",
+      "target": 262144,
+      "actual_tokens": 262144,
+      "ok": true,
+      "prediction": "61173",
+      "gold": [
+        "61173"
+      ],
+      "secs": 164.8
+    },
+    {
+      "task": "mkniah(keys=3,query=silver)",
+      "target": 262144,
+      "actual_tokens": 262149,
+      "ok": true,
+      "prediction": "96752",
+      "gold": [
+        "96752"
+      ],
+      "secs": 164.9
+    },
+    {
+      "task": "vartrack(chains=1,hops=4)",
+      "target": 262144,
+      "actual_tokens": 262148,
+      "ok": true,
+      "prediction": "Based on the text, the chain of variable assignments is:\n\n1. `VAR MEFBT = 51467`\n2. `VAR BIBMX = VAR",
+      "gold": [
+        "MEFBT",
+        "BIBMX",
+        "NBNWB",
+        "BWKYO",
+        "PBCRO"
+      ],
+      "secs": 169.2
+    },
+    {
+      "task": "cwe(common=5)",
+      "target": 262144,
+      "actual_tokens": 262167,
+      "ok": true,
+      "prediction": "Based on the list provided, the 5 most common words are:\n\n1. yellow\n2. valley\n3. mirror\n4. kettle\n5.",
+      "gold": [
+        "yonder",
+        "yellow",
+        "valley",
+        "mirror",
+        "kettle"
+      ],
+      "secs": 183.8
+    }
+  ]
+}
