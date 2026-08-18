@@ -1,0 +1,111 @@
+{
+  "model": "deepseek-v4-flash-dspark",
+  "base_url": "http://127.0.0.1:18888/v1",
+  "seed": 42,
+  "cases": [
+    {
+      "task": "sniah(key=prairie)",
+      "target": 8192,
+      "actual_tokens": 8200,
+      "ok": true,
+      "prediction": "24592",
+      "gold": [
+        "24592"
+      ],
+      "secs": 2.2
+    },
+    {
+      "task": "mkniah(keys=3,query=river)",
+      "target": 8192,
+      "actual_tokens": 8204,
+      "ok": true,
+      "prediction": "28289",
+      "gold": [
+        "28289"
+      ],
+      "secs": 2.5
+    },
+    {
+      "task": "vartrack(chains=1,hops=4)",
+      "target": 8192,
+      "actual_tokens": 8204,
+      "ok": true,
+      "prediction": "Based on the chain of assignments:\n\n1. `VAR CTOPA = 44671`  \n2. `VAR CGPOS = VAR CTOPA` \u2192 CGPOS = 44",
+      "gold": [
+        "CTOPA",
+        "CGPOS",
+        "SKLHW",
+        "TEKHF",
+        "TCJJI"
+      ],
+      "secs": 4.7
+    },
+    {
+      "task": "cwe(common=5)",
+      "target": 8192,
+      "actual_tokens": 8199,
+      "ok": true,
+      "prediction": "Based on the list provided, the 5 most common words are:\n\n1. **temple** (appears 8 times)\n2. **ancho",
+      "gold": [
+        "quiver",
+        "anchor",
+        "needle",
+        "jungle",
+        "temple"
+      ],
+      "secs": 9.6
+    },
+    {
+      "task": "sniah(key=apple)",
+      "target": 32768,
+      "actual_tokens": 32776,
+      "ok": true,
+      "prediction": "61173",
+      "gold": [
+        "61173"
+      ],
+      "secs": 16.4
+    },
+    {
+      "task": "mkniah(keys=3,query=silver)",
+      "target": 32768,
+      "actual_tokens": 32781,
+      "ok": true,
+      "prediction": "96752",
+      "gold": [
+        "96752"
+      ],
+      "secs": 17.4
+    },
+    {
+      "task": "vartrack(chains=1,hops=4)",
+      "target": 32768,
+      "actual_tokens": 32780,
+      "ok": true,
+      "prediction": "Based on the chain of assignments in the text:\n\n1. `VAR MEFBT = 51467`  \n2. `VAR BIBMX = VAR MEFBT` ",
+      "gold": [
+        "MEFBT",
+        "BIBMX",
+        "NBNWB",
+        "BWKYO",
+        "PBCRO"
+      ],
+      "secs": 18.7
+    },
+    {
+      "task": "cwe(common=5)",
+      "target": 32768,
+      "actual_tokens": 32775,
+      "ok": true,
+      "prediction": "Based on the list provided, the 5 most common words are:\n\n1. **yellow** (appears 9 times)\n2. **valle",
+      "gold": [
+        "yonder",
+        "yellow",
+        "valley",
+        "mirror",
+        "kettle"
+      ],
+      "secs": 18.7
+    }
+  ]
+}
