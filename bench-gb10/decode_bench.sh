@@ -31,6 +31,15 @@ while [ $# -gt 0 ]; do
 done
 BASE=http://127.0.0.1:18888
 MODEL=deepseek-v4-flash-dspark
+
+# Readiness gate: a server still loading weights answers /v1/models with a
+# connection error and every chat request instantly with 0 tokens, which used to
+# surface as a nonsensical negative decode rate instead of an error.
+if ! curl -s --max-time 8 "$BASE/v1/models" 2>/dev/null | grep -q "$MODEL"; then
+  echo "ABORT: $BASE is not serving $MODEL yet (still loading weights?)." >&2
+  docker logs --tail 3 deepseek-v4-flash-vllm-dspark-1 2>&1 | tail -2 >&2
+  exit 4
+fi
 OUT="$HOME/orion/ds4bench/decode-${LABEL}.tsv"
 mkdir -p "$(dirname "$OUT")"
 printf 'trial\tttft_s\tdecode_tok_s\tcompletion_tok\tfinish\taccept_len\tacc_pos\n' > "$OUT"
@@ -106,6 +115,10 @@ for t in $(seq 1 "$REP"); do
   TTFT=$(echo "${TFIRST:-$T_END} - $T0" | bc -l)
   WIN=$(echo "${TLAST:-$T_END} - ${TFIRST:-$T0}" | bc -l)
   CTOK=${CTOK:-0}
+  if [ "${CTOK:-0}" -lt 2 ]; then
+    echo "ABORT: trial $t returned $CTOK completion tokens (server not serving, or request rejected)." >&2
+    exit 5
+  fi
   RATE=$(echo "if ($WIN > 0) ($CTOK - 1) / $WIN else 0" | bc -l)
 
   # acceptance deltas
