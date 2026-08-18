@@ -48,10 +48,25 @@ metrics_snap() {
     END {printf "%s|%s|", d+0, a+0; for(i=0;i<8;i++) if(i in pos) printf "%s,", pos[i]; print ""}'
 }
 
-filler() { # $1 = words, deterministic but unique per trial via nonce arg $2
-  local w=$1 n=$2 s=""
-  local pool=(system latency kernel tensor gradient buffer scheduler pipeline register cache throughput vector matrix pointer compiler runtime memory network protocol cluster)
-  for i in $(seq 1 "$w"); do s="$s ${pool[$(( (i*7 + n*13) % 20 ))]}"; done
+# Natural prose, NOT a repeated-word pool. scripts/EVAL.md: pathological
+# repeated-token prompts collapse the drafter (per-position 0.93->0.33 good vs
+# 0.72->0.11 bad) and read as a fake decode regression. Rotate real sentences.
+filler() { # $1 = approx words (rounded up to whole sentences), $2 = trial nonce
+  local w=$1 n=$2 s="" i=0
+  local -a S=(
+"The storage engine writes each committed transaction to a durable log before acknowledging the client."
+"Cache coherence protocols must decide whether a line is shared, exclusive, or invalid at every access."
+"A scheduler that ignores tail latency will happily starve the requests that users actually notice."
+"Register pressure decides whether the compiler keeps a value in flight or spills it to the stack."
+"Network partitions are not hypothetical; every long-lived cluster eventually loses a link mid-write."
+"Profiling before optimizing avoids the classic mistake of tuning a loop that never dominated runtime."
+"Garbage collectors trade throughput for pause time, and the right trade depends on the workload shape."
+"A well-chosen index turns a full table scan into a handful of page reads and a short traversal."
+)
+  while [ $(echo "$s" | wc -w) -lt "$w" ]; do
+    s="$s ${S[$(( (i + n) % ${#S[@]} ))]}"; i=$((i+1))
+    [ $i -gt 40 ] && break
+  done
   echo "$s"
 }
 
