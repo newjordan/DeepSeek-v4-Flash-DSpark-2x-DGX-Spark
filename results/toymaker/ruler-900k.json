@@ -1,0 +1,44 @@
+{
+  "model": "deepseek-v4-flash-dspark",
+  "base_url": "http://127.0.0.1:18888/v1",
+  "seed": 42,
+  "cases": [
+    {
+      "task": "sniah(key=prairie)",
+      "target": 900000,
+      "actual_tokens": 900016,
+      "ok": true,
+      "prediction": "24592",
+      "gold": [
+        "24592"
+      ],
+      "secs": 998.4
+    },
+    {
+      "task": "mkniah(keys=3,query=river)",
+      "target": 900000,
+      "actual_tokens": 900020,
+      "ok": true,
+      "prediction": "28289",
+      "gold": [
+        "28289"
+      ],
+      "secs": 1000.5
+    },
+    {
+      "task": "vartrack(chains=1,hops=4)",
+      "target": 900000,
+      "actual_tokens": 900020,
+      "ok": true,
+      "prediction": "Based on the text provided, the chain of variable assignments is:\n\n1. `VAR CTOPA = 44671`\n2. `VAR CG",
+      "gold": [
+        "CTOPA",
+        "CGPOS",
+        "SKLHW",
+        "TEKHF",
+        "TCJJI"
+      ],
+      "secs": 1003.6
+    }
+  ]
+}

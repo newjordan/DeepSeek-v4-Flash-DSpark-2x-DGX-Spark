@@ -4,7 +4,7 @@
 # Writes ~/orion/ds4bench/samples-<label>.tsv and prints a summary.
 set -uo pipefail
 LABEL="${1:?label}"; DUR="${2:-60}"; IVAL="${3:-2}"
-WORKER=100.124.153.1
+WORKER="${DSPARK_WORKER:?set DSPARK_WORKER to the worker node address}"
 OUT="$HOME/orion/ds4bench/samples-${LABEL}.tsv"
 mkdir -p "$(dirname "$OUT")"
 printf 'ts\tnode\tsm_mhz\tpower_w\ttemp_c\tcpu_busy_pct\tvllm_cpu_pct\n' > "$OUT"

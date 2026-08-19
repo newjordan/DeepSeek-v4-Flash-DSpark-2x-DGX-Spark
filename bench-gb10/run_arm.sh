@@ -13,7 +13,7 @@
 set -uo pipefail
 ARM="${1:?arm label}"; shift || true
 DIR="$HOME/orion/DeepSeek-v4-Flash-DSpark-2x-DGX-Spark"
-WORKER=100.124.153.1
+WORKER="${DSPARK_WORKER:?set DSPARK_WORKER to the worker node address}"
 OUT="$DIR/results/toymaker/arm-${ARM}"
 mkdir -p "$OUT"
 cd "$DIR"
@@ -47,8 +47,8 @@ if [ -n "$H_BUSY$W_BUSY" ] && [ "${ALLOW_CONTENTION:-0}" != "1" ]; then
 fi
 
 # ---- 1. apply env deltas ----------------------------------------------------
-cp .env.dspark "$OUT/.env.before"
-trap 'cp "$OUT/.env.before" "$DIR/.env.dspark"; echo "(.env.dspark restored)"' EXIT
+cp .env.dspark "$OUT/../.env.restore.$ARM"   # outside results/, for the restore trap only
+trap 'cp "$OUT/../.env.restore.$ARM" "$DIR/.env.dspark"; rm -f "$OUT/../.env.restore.$ARM"; echo "(.env.dspark restored)"' EXIT
 DELTAS=""
 for kv in "$@"; do
   k="${kv%%=*}"
@@ -56,7 +56,10 @@ for kv in "$@"; do
   DELTAS="$DELTAS $kv"
 done
 say "arm=$ARM deltas:${DELTAS:- (shipped defaults)}"
-cp .env.dspark "$OUT/.env.used"
+# Record only the deltas, never a copy of .env.dspark: that file is gitignored
+# because it carries this deployment's hosts, fabric addresses and paths, and
+# copying it under results/ would publish exactly what the ignore rule prevents.
+printf '%s\n' "${DELTAS:-(shipped defaults)}" > "$OUT/deltas.txt"
 
 # ---- 2. restart -------------------------------------------------------------
 say "restart"

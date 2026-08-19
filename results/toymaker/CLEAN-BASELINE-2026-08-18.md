@@ -55,7 +55,7 @@ Two conclusions:
 2. **Reasoning content drafts far worse than prose** (0.306 vs 0.475, −36 %). Since
    `DEFAULT_THINKING=max` is the shipped default, every request without an explicit budget pays
    twice: it emits far more tokens *and* each token is ~36 % more expensive in decode steps.
-   This compounds with the client-side finding in `DS4_ANGELX_HARNESS_REPORT_20260818.md`.
+   This compounds on the client side for any agent harness that does not send a budget.
 
 Audited acceptance is 68–75 % (mean ~4.5). At 3.38 we are at ~75 % of that; closing it would
 take C1 39.9 → ~53 tok/s, and the residual to 73–76 remains unexplained — candidates are the
