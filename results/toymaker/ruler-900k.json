@@ -39,6 +39,21 @@
         "TCJJI"
       ],
       "secs": 1003.6
+    },
+    {
+      "task": "cwe(common=5)",
+      "target": 900000,
+      "actual_tokens": 900015,
+      "ok": true,
+      "prediction": "Based on the list provided, the 5 most common words are:\n\n1.  **temple** (appears 8 times)\n2.  **anc",
+      "gold": [
+        "quiver",
+        "anchor",
+        "needle",
+        "jungle",
+        "temple"
+      ],
+      "secs": 1002.3
     }
   ]
 }
