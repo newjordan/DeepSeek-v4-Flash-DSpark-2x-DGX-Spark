@@ -1,0 +1,83 @@
+{
+  "model": "deepseek-v4-flash-dspark",
+  "base_url": "http://127.0.0.1:18888/v1",
+  "seed": 42,
+  "cases": [
+    {
+      "task": "sniah(key=prairie)",
+      "target": 524288,
+      "actual_tokens": 524296,
+      "ok": true,
+      "prediction": "24592",
+      "gold": [
+        "24592"
+      ],
+      "secs": 463.4
+    },
+    {
+      "task": "mkniah(keys=3,query=river)",
+      "target": 524288,
+      "actual_tokens": 524300,
+      "ok": true,
+      "prediction": "28289",
+      "gold": [
+        "28289"
+      ],
+      "secs": 477.9
+    },
+    {
+      "task": "vartrack(chains=1,hops=4)",
+      "target": 524288,
+      "actual_tokens": 524300,
+      "ok": true,
+      "prediction": "Based on the text, the variables assigned the value 44671 are:\n\n*   CTOPA\n*   CGPOS\n*   SKLHW\n*   TE",
+      "gold": [
+        "CTOPA",
+        "CGPOS",
+        "SKLHW",
+        "TEKHF",
+        "TCJJI"
+      ],
+      "secs": 481.8
+    },
+    {
+      "task": "cwe(common=5)",
+      "target": 524288,
+      "actual_tokens": 524295,
+      "ok": true,
+      "prediction": "Based on the list provided, the 5 most common words are:\n\n1.  **temple** (appears 8 times)\n2.  **jun",
+      "gold": [
+        "quiver",
+        "anchor",
+        "needle",
+        "jungle",
+        "temple"
+      ],
+      "secs": 479.7
+    },
+    {
+      "task": "task_sniah",
+      "target": 900000,
+      "ok": false,
+      "error": "timed out"
+    },
+    {
+      "task": "task_mkniah",
+      "target": 900000,
+      "ok": false,
+      "error": "timed out"
+    },
+    {
+      "task": "task_vartrack",
+      "target": 900000,
+      "ok": false,
+      "error": "timed out"
+    },
+    {
+      "task": "task_cwe",
+      "target": 900000,
+      "ok": false,
+      "error": "timed out"
+    }
+  ]
+}
